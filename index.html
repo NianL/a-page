@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="script/vue.js"></script>
+    <script src="script/vue-router.js"></script>
+    <script src="script/tween.js"></script>
+    <script src="script/common.js"></script>
+    <script src="script/components.js"></script>
+    <script src="component/MenuNav.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <header>
+                <l-menu-nav :default-value="pathName" :data="menuData" @menu-click="menuClick"></l-menu-nav>
+            </header>
+            <div class="main">
+                <l-view :path="c_pathName" />
+            </div>
+        </template>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
