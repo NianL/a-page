@@ -2,18 +2,18 @@ var Config = {};
 
 Config.fileRely = {
     'app': [
-        'component/MenuNav.js',
+        'script/component/MenuNav.js',
     ],
     'home': [
-        'page/home.js',
-        'component/Loading.js',
-        'component/test.js'
+        'script/page/home.js',
+        'script/component/Loading.js',
+        'script/component/test.js'
     ],
     'article': [
-        'page/article.js'
+        'script/page/article.js'
     ],
     'about': [
-        'page/about.js'
+        'script/page/about.js'
     ]
 };
 
