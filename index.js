@@ -1,7 +1,7 @@
-//文件加载类
+//文件加载
 var Loads = {
     _data: [],
-    _rely: { //页面对应的依赖文件
+    _rely: { //元素对应的依赖
         'home': [
             'page/home.js',
             'component/Loading.js',
@@ -14,7 +14,7 @@ var Loads = {
             'page/about.js'
         ],
     },
-    page(name, callback) {
+    element(name, callback) {
         var rely = this._rely[name];
         var loadIndex = 0;
         if (rely) {
@@ -37,7 +37,7 @@ var Loads = {
     },
 };
 
-//首页初始化
+//初始化
 new Vue({
     router: new VueRouter(),
     data: {
@@ -69,8 +69,8 @@ new Vue({
     },
     methods: {
         loadPage(name) {
-            var _name = name == '' ? 'home' : name;
-            Loads.page(_name, () => {
+            var _name = name == '' ? this.menuData[0].value : name;
+            Loads.element(_name, () => {
                 this.pathName = _name;
             });
         },
