@@ -1,9 +1,9 @@
-var Loads = {
+var ImportFile = {
     has: [],
-    loadElement(relys, callback) {
+    load(imports, callback) {
         var loadIndex = 0;
-        if (relys) {
-            relys.map((item) => {
+        if (imports) {
+            imports.map((item) => {
                 if (this.has.indexOf(item) == -1) {
                     this.has.push(item);
                     Common.importScript(item, checkStatus);
@@ -15,7 +15,7 @@ var Loads = {
 
         function checkStatus() {
             loadIndex++;
-            if (loadIndex == relys.length) {
+            if (loadIndex == imports.length) {
                 callback && callback();
             }
         }
@@ -50,23 +50,23 @@ new Vue({
             menuData: [{
                 text: '首页',
                 value: 'home',
-                relys: [
+                imports: [
                     'script/page/home.js'
                 ]
             }, {
                 text: '我的文章',
                 value: 'article',
-                relys: [
+                imports: [
                     'script/page/article.js'
                 ]
             }, {
                 text: '关于',
                 value: 'about',
-                relys: [
+                imports: [
                     'script/page/about.js'
                 ]
             }],
-            relys: [
+            imports: [
                 'script/component/MenuNav.js'
             ]
         }
@@ -77,7 +77,7 @@ new Vue({
         },
     },
     created() {
-        Loads.loadElement(this.relys, () => {
+        ImportFile.load(this.imports, () => {
             this.loadPage(this.$route.path.substr(1));
             this.loadRely = true;
         });
@@ -92,7 +92,7 @@ new Vue({
                     break;
                 }
             }
-            Loads.loadElement(tempItem.relys, () => {
+            ImportFile.load(tempItem.imports, () => {
                 this.pathInfo = tempItem;
             });
         },

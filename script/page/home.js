@@ -9,14 +9,14 @@ Vue.component('l-page-home', {
     data() {
         return {
             loadRely: false,
-            relys: [
+            imports: [
                 'script/component/Loading.js',
                 'script/component/test.js'
             ],
         };
     },
     created() {
-        Loads.loadElement(this.relys, () => {
+        ImportFile.load(this.imports, () => {
             this.loadRely = true;
         });
     }
