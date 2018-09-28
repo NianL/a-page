@@ -28,10 +28,18 @@ new Vue({
     template: `
         <div>
             <div class="header">
-                <l-menu-nav v-if="loadRely && pathInfo" :default-value="pathInfo.value" :data="menuData" @menu-click="menuClick"></l-menu-nav>
+                <l-menu-nav 
+                    v-if="loadRely && pathInfo" 
+                    :default-value="pathInfo.value" 
+                    :data="menuData" 
+                    @menu-click="menuClick"
+                ></l-menu-nav>
             </div>
             <div class="main">
-                <page-view v-if="pathInfo" :path="'l-page-'+pathInfo.value" />
+                <page-view 
+                    v-if="pathInfo" 
+                    :path="'l-page-'+pathInfo.value" 
+                />
             </div>
         </div>
     `,
