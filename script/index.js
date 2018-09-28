@@ -22,10 +22,10 @@ var Reouter = new VueRouter({
 //加载页面和文件
 var ImportFile = {
     pages: {
-        'home': ['script/page/Home.js'],
-        'article': ['script/page/Article.js'],
-        'article-detail': ['script/page/ArticleDetail.js'],
-        'about': ['script/page/About.js'],
+        'home': ['script/page/home.js'],
+        'article': ['script/page/article.js'],
+        'article-detail': ['script/page/article-detail.js'],
+        'about': ['script/page/about.js'],
     },
     has: [],
     page(name, callback) {
@@ -98,7 +98,7 @@ new Vue({
             importObject: {
                 status: false,
                 data: [
-                    'script/component/MenuNav.js'
+                    'script/component/menu-nav.js'
                 ]
             },
             currentMenu: null,

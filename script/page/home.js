@@ -12,7 +12,7 @@ var PageHome = {
             importObject: {
                 status: false,
                 data: [
-                    'script/component/Loading.js',
+                    'script/component/loading.js',
                     'script/component/test.js'
                 ]
             }
