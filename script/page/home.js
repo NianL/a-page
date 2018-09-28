@@ -6,6 +6,7 @@ var PageHome = {
             测试另外一个组件的加载：<l-test v-if="importObject.status" />
         </div>
     `,
+    mixins: [MixinImport],
     data() {
         return {
             importObject: {
@@ -19,9 +20,6 @@ var PageHome = {
     },
     created() {
         document.title = '首页';
-        ImportFile.load(this.importObject.data, () => {
-            this.importObject.status = true;
-        });
     }
 };
 

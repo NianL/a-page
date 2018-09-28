@@ -1,3 +1,5 @@
+//路由配置，因为加载顺序，未使用component
+//name对应ImportFile.pages
 var Reouter = new VueRouter({
     routes: [{
         path: '/',
@@ -17,6 +19,7 @@ var Reouter = new VueRouter({
     }]
 });
 
+//加载页面和文件
 var ImportFile = {
     pages: {
         'home': ['script/page/Home.js'],
@@ -50,14 +53,25 @@ var ImportFile = {
     }
 };
 
+//混入对象-自动加载文件
+var MixinImport = {
+    created() {
+        ImportFile.load(this.importObject.data, () => {
+            this.importObject.status = true;
+        });
+    }
+};
+
+//初始化
 new Vue({
     el: '#app',
     router: Reouter,
+    mixins: [MixinImport],
     template: `
         <div>
             <div class="header">
                 <l-menu-nav 
-                    v-if="loadRely && currentMenu" 
+                    v-if="importObject.status && currentMenu" 
                     :default-value="currentMenu" 
                     :data="menuData" 
                     @menu-click="menuClick"
@@ -81,7 +95,12 @@ new Vue({
     },
     data() {
         return {
-            loadRely: false,
+            importObject: {
+                status: false,
+                data: [
+                    'script/component/MenuNav.js'
+                ]
+            },
             currentMenu: null,
             currentPage: null,
             menuData: [{
@@ -93,10 +112,7 @@ new Vue({
             }, {
                 text: '关于',
                 value: 'about'
-            }],
-            imports: [
-                'script/component/MenuNav.js'
-            ]
+            }]
         }
     },
     watch: {
@@ -105,10 +121,7 @@ new Vue({
         },
     },
     created() {
-        ImportFile.load(this.imports, () => {
-            this.loadPage(this.$route.name);
-            this.loadRely = true;
-        });
+        this.loadPage(this.$route.name);
     },
     methods: {
         loadPage(name) {

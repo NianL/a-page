@@ -1,17 +1,17 @@
 Vue.component('l-test', {
     template: `
         <div>
-            <button @click="aaa">test</button>
+            <button @click="aaa">test{{count}}</button>
         </div>
     `,
     data() {
         return {
-
+            count: 0
         };
     },
     methods: {
-        aaa(){
-            alert(123);
+        aaa() {
+            this.count++
         }
     }
 });
