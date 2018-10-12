@@ -34,7 +34,7 @@ var ImportFile = {
             imports.map((item) => {
                 if (this.has.indexOf(item) == -1) {
                     this.has.push(item);
-                    Common.importScript(item, checkStatus);
+                    importScript(item, checkStatus);
                 } else {
                     checkStatus();
                 }
@@ -46,6 +46,22 @@ var ImportFile = {
             if (loadIndex == imports.length) {
                 callback && callback();
             }
+        }
+
+        function importScript(url, callback) {
+            var head = document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+            if (typeof (callback) == 'function') {
+                script.onload = script.onreadystatechange = function () {
+                    if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+                        callback();
+                        script.onload = script.onreadystatechange = null;
+                    }
+                };
+            }
+            head.appendChild(script);
         }
     }
 };
@@ -93,6 +109,8 @@ new Vue({
             importObject: {
                 status: false,
                 data: [
+                    'script/tween.js',
+                    'script/common.js',
                     'script/component/menu-nav.js'
                 ]
             },
