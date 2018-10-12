@@ -16,11 +16,8 @@ var PageArticle = {
     },
     methods: {
         viewDetail(item) {
-            this.$router.push({
-                name: 'article-detail',
-                params: {
-                    id: item
-                }
+            this.$root.pageJump('article-detail', {
+                id: item
             });
         }
     }

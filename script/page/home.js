@@ -1,8 +1,8 @@
 var PageHome = {
     template: `
-        <div>
+        <div v-if="importObject.status">
             这个是home页面<br />
-            加载组件:loading <l-loading v-if="importObject.status" /><br />
+            加载组件:loading <l-loading /><br />
             测试另外一个组件的加载：<l-test v-if="importObject.status" />
         </div>
     `,

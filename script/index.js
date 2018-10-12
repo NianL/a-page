@@ -1,5 +1,3 @@
-//路由配置，因为加载顺序，未使用component
-//name对应ImportFile.pages
 var Reouter = new VueRouter({
     routes: [{
         path: '/',
@@ -19,7 +17,6 @@ var Reouter = new VueRouter({
     }]
 });
 
-//加载页面和文件
 var ImportFile = {
     pages: {
         'home': ['script/page/home.js'],
@@ -53,7 +50,6 @@ var ImportFile = {
     }
 };
 
-//混入对象-自动加载文件
 var MixinImport = {
     created() {
         ImportFile.load(this.importObject.data, () => {
@@ -62,16 +58,15 @@ var MixinImport = {
     }
 };
 
-//初始化
 new Vue({
     el: '#app',
     router: Reouter,
     mixins: [MixinImport],
     template: `
-        <div>
+        <div v-if="importObject.status">
             <div class="header">
                 <l-menu-nav 
-                    v-if="importObject.status && currentMenu" 
+                    v-if="currentMenu" 
                     :default-value="currentMenu" 
                     :data="menuData" 
                     @menu-click="menuClick"
@@ -90,7 +85,7 @@ new Vue({
             props: ['path'],
             render: function (h) {
                 return h(this.path);
-            },
+            }
         }
     },
     data() {
@@ -131,9 +126,10 @@ new Vue({
                 this.currentPage = 'l-page-' + _name;
             });
         },
-        pageJump(value) {
+        pageJump(name, params) {
             this.$router.push({
-                name: value
+                name: name,
+                params: params
             });
         },
         menuClick(item) {
