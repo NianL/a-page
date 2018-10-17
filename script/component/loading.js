@@ -1,11 +1,5 @@
 Vue.component('l-loading', {
-    template: '\
-        <div class="l-loading">\
-            <div class="bounce1"></div>\
-            <div class="bounce2"></div>\
-            <div class="bounce3"></div>\
-        </div>\
-    ',
+    template: '<div class="l-loading" :style="styleObj">',
     data: function () {
         return {
             styleObj: {}
@@ -13,15 +7,16 @@ Vue.component('l-loading', {
     },
     props: {
         'size': {
-            type: String,
-            default: '5'
+            type: Number,
+            default: 3
         }
     },
     created: function () {
-        var size = this.size || 5;
+        var size = parseInt(this.size) * 5;
         this.styleObj = {
-            width: size + "px",
-            height: size + "px"
+            width: size + 'px',
+            height: size + 'px',
+            'border-width': (size / 10) + 'px'
         };
     }
 });

@@ -6,57 +6,21 @@
 /* Loading */
 
 .l-loading {
-    text-align: center;
+    border-style: solid;
+    border-color: #666 #666 transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    /*动画时间1s，线性变化，无限循环*/
+    animation: l-loading 1s linear infinite;
 }
 
-.l-loading>div {
-    width: 10px;
-    height: 10px;
-    background-color: #666;
-    border-radius: 100%;
-    display: inline-block;
-    -webkit-animation: l-loading-scale 1.4s infinite ease-in-out;
-    animation: l-loading-scale 1.4s infinite ease-in-out;
-    /* Prevent first frame from flickering when animation starts */
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-}
+@keyframes l-loading {
+    0% {
+        transform: rotate(0deg);
+    }
 
-.l-loading .bounce1 {
-    -webkit-animation-delay: -0.32s;
-    animation-delay: -0.32s;
-}
-
-.l-loading .bounce2 {
-    -webkit-animation-delay: -0.16s;
-    animation-delay: -0.16s;
-}
-
-@-webkit-keyframes l-loading-scale {
-
-    0%,
-    80%,
     100% {
-        -webkit-transform: scale(0.0)
-    }
-
-    40% {
-        -webkit-transform: scale(1.0)
-    }
-}
-
-@keyframes l-loading-scale {
-
-    0%,
-    80%,
-    100% {
-        transform: scale(0.0);
-        -webkit-transform: scale(0.0);
-    }
-
-    40% {
-        transform: scale(1.0);
-        -webkit-transform: scale(1.0);
+        transform: rotate(360deg);
     }
 }
 
