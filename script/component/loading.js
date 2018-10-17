@@ -1,9 +1,9 @@
 Vue.component('l-loading', {
     template: '\
         <div class="l-loading">\
-            <div :style="styleObj"></div>\
-            <div :style="styleObj"></div>\
-            <div :style="styleObj"></div>\
+            <div class="bounce1"></div>\
+            <div class="bounce2"></div>\
+            <div class="bounce3"></div>\
         </div>\
     ',
     data: function () {
