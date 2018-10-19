@@ -38,7 +38,7 @@ var ImportFile = {
     has: [],
     load(imports, callback) {
         var loadIndex = 0;
-        if (imports) {
+        if (imports && imports.length > 0) {
             imports.map((item) => {
                 if (this.has.indexOf(item) == -1) {
                     this.has.push(item);
@@ -77,7 +77,11 @@ var MixinImport = {
     created() {
         ImportFile.load(this.importObject.data, () => {
             this.importObject.status = true;
+            this.init();
         });
+    },
+    methods: {
+        init() {}
     }
 };
 
