@@ -1,5 +1,5 @@
 Vue.component('l-loading', {
-    template: '<div class="l-loading" :style="styleObj">',
+    template: '<div class="l-loading" :style="styleObj" />',
     data: function () {
         return {
             styleObj: {}
