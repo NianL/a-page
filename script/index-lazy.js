@@ -99,9 +99,9 @@ new Vue({
                 ></l-menu-nav>
             </div>
             <div class="main">
-                <page-view 
+                <component 
                     v-if="currentPage" 
-                    :path="currentPage" 
+                    :is="currentPage" 
                 />
             </div>
         </div>
